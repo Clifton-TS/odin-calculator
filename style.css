@@ -15,19 +15,20 @@ body {
     background-color: rgb(48, 48, 48);
     height: 600px;
     padding: 10px;
+    border-radius: 10px;
 }
 
 .display {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    background-color: rgb(42, 59, 59);
+    background-color: rgb(156, 165, 141);
     width: 530px;
     height: 100px;
     padding-right: 30px;
     padding-left: 30px;
     margin: 5px 5px 0px 5px;
-    font-size: 60px;
+    font-size: 100px;
 }
 
 .buttonRow {
@@ -64,7 +65,7 @@ button {
     font-size: 60px;
     width: 150px;
     border: 0;
-    border-radius:
+    border-radius: 5px
 }
 
 button:hover {
