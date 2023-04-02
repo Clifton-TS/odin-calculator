@@ -1,3 +1,4 @@
+// Variables
 let display = document.querySelector(".display")
 let numbers = document.getElementsByClassName("number")
 let operators = document.getElementsByClassName("operator")
@@ -6,6 +7,7 @@ let number1
 let number2
 let operator
 
+// Event listener for every number
 for (i=0; i<numbers.length; i++) {
     let current = i
     numbers[i].addEventListener("click", () => {
@@ -18,6 +20,7 @@ for (i=0; i<numbers.length; i++) {
     });
 }
 
+// Event listener for every operator
 for (i=0; i<operators.length; i++) {
     let current = i
     operators[i].addEventListener("click", () => {
@@ -33,6 +36,7 @@ for (i=0; i<operators.length; i++) {
     })
 }
 
+// Event listeners for other buttons
 document.querySelector(".clear").addEventListener("click", () => {
     operator = undefined
     number1 = undefined
@@ -53,8 +57,10 @@ document.querySelector(".sign").addEventListener("click", () => {
 })
 
 document.querySelector(".percent").addEventListener("click", () => {
-    if (display.textContent !="nope") {
-        display.textContent = display.textContent / 100
+    if (display.textContent != "nope" && number1 != undefined) {
+        display.textContent = percent()
+        number1 = undefined
+        number2 = undefined
     }
 })
 
@@ -66,6 +72,7 @@ document.querySelector(".equal").addEventListener("click", () => {
     }
 })
 
+// Various functions
 function clear() {
     display.textContent = "0"
 }
@@ -86,6 +93,28 @@ function operate() {
     }else if (operator == "/" && number2 != "0") {
         reset = true
         result = +number1 / +number2
+    }else if (operator =="/" && number2 =="0") {
+        result = "nope"
+    }
+    return result.toString().slice(0,8)
+}
+
+function percent() {
+    number2 = display.textContent
+    clear()
+    let result
+    if (operator == "+") {
+        reset = true
+        result = +number1 + (+number1 * (+number2/100))
+    }else if (operator == "-") {
+        reset = true
+        result = +number1 - (+number1 * (+number2/100))
+    }else if (operator == "*") {
+        reset = true
+        result = +number1 * +number2/100
+    }else if (operator == "/" && number2 != "0") {
+        reset = true
+        result = +number1 * (100/+number2)
     }else if (operator =="/" && number2 =="0") {
         result = "nope"
     }
